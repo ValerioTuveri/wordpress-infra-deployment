@@ -19,6 +19,9 @@ jobs:
       run:
         working-directory: ./terraform  # Set default working directory for all run steps
 
+    env:
+      AWS_REGION: 'eu-central-1'
+
     steps:
     - name: Checkout
       uses: actions/checkout@v4
