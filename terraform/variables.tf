@@ -1,7 +1,7 @@
 variable "wordpress_version" {
   description = "Version of WordPress to install"
   type        = string
-  default     = "latest"
+  default     = "6.5"
 }
 
 variable "apache_version" {

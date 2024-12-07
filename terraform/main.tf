@@ -29,9 +29,8 @@ resource "aws_instance" "wordpress" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.wordpress_sg.id]
 
-  user_data = file("${path.module}/../scripts/install_wordpress.sh", {
-    wordpress_version = "6.5"
-    
+  user_data = templatefile("${path.module}/../scripts/install_wordpress.sh", {
+    wordpress_version = var.wordpress_version
   })
 
   tags = {
