@@ -5,7 +5,9 @@ set -e
 sudo yum update -y
 sudo yum install -y httpd php php-mysqlnd
 
-WORDPRESS_VERSION="${1}"  # Pass the version as the first argument
+# Install WordPress
+WORDPRESS_VERSION="${wordpress_version}"  # Passed from Terraform
+echo "Installing WordPress version: $WORDPRESS_VERSION"
 if [ "$WORDPRESS_VERSION" = "latest" ]; then
   wget https://wordpress.org/latest.tar.gz
 else
