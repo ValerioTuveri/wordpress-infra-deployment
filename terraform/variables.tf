@@ -3,3 +3,9 @@ variable "wordpress_version" {
   type        = string
   default     = "latest"
 }
+
+variable "apache_version" {
+  description = "Version of Apache to install"
+  type        = string
+  default     = "2.4"
+}
