@@ -1,15 +1,17 @@
 #!/bin/bash
-yum update -y
-yum install nginx -y
 
-# Start Nginx and PHP-FPM
-systemctl start nginx
-systemctl enable nginx
+sudo yum update -y
+sudo yum install -y httpd php php-mysqlnd
 
-# Install WordPress
-wget https://wordpress.org/${wordpress_version}.tar.gz
-tar -xzvf ${wordpress_version}.tar.gz
-mv wordpress/* /usr/share/nginx/html/
+# Download specific WordPress version
+wget https://wordpress.org/wordpress-${wordpress_version}.tar.gz
+tar -xzf wordpress-${wordpress_version}.tar.gz
+sudo mv wordpress /var/www/html/
 
-chown -R nginx:nginx /usr/share/nginx/html/
-systemctl restart nginx
+# Set file permissions
+sudo chown -R apache:apache /var/www/html/wordpress
+sudo chmod -R 755 /var/www/html/wordpress
+
+# Start Apache
+sudo systemctl start httpd
+sudo systemctl enable httpd
