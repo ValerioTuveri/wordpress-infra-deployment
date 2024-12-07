@@ -1,7 +1,6 @@
 #!/bin/bash
 yum update -y
-amazon-linux-extras install -y nginx1
-yum install -y php php-mysqlnd php-fpm
+yum install nginx -y
 
 # Start Nginx and PHP-FPM
 systemctl start nginx
