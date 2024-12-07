@@ -24,10 +24,9 @@ resource "aws_security_group" "wordpress_sg" {
   }
 }
 
-
 resource "aws_instance" "wordpress" {
-  ami           = "ami-0669b163befffbdfc" // Amazon Linux 2023 AMI ID for eu-central-1
-  instance_type = "t2.micro"
+  ami                    = "ami-0669b163befffbdfc" // Amazon Linux 2023 AMI ID for eu-central-1
+  instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.wordpress_sg.id]
 
   user_data = <<-EOF
@@ -60,7 +59,6 @@ resource "aws_instance" "wordpress" {
               systemctl start php-fpm
               systemctl enable php-fpm
               EOF
-
 
   tags = {
     Name = "WordPressInstance"
