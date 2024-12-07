@@ -1,12 +1,18 @@
 #!/bin/bash
 
+set -e
+
 sudo yum update -y
 sudo yum install -y httpd php php-mysqlnd
 
-# Download specific WordPress version
-wget https://wordpress.org/wordpress-latest.tar.gz
-tar -xzf wordpress-latest.tar.gz
-sudo mv wordpress /var/www/html/
+WORDPRESS_VERSION="${1}"  # Pass the version as the first argument
+if [ "$WORDPRESS_VERSION" = "latest" ]; then
+  wget https://wordpress.org/latest.tar.gz
+else
+  wget https://wordpress.org/wordpress-$WORDPRESS_VERSION.tar.gz
+fi
+tar -xzf wordpress-$WORDPRESS_VERSION.tar.gz
+cp -r wordpress/* /var/www/html/
 
 # Set file permissions
 sudo chown -R apache:apache /var/www/html/wordpress
