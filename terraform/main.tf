@@ -29,7 +29,7 @@ resource "aws_instance" "wordpress" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.wordpress_sg.id]
 
-  user_data = file("${path.module}/../scripts/install_wordpress.sh")
+  user_data = file("scripts/install_wordpress.sh")
 
   tags = {
     Name = "WordPressInstance"
